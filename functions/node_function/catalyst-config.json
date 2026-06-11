@@ -1,0 +1,11 @@
+{
+  "deployment": {
+    "name": "node_function",
+    "stack": "node20",
+    "type": "browser_logic",
+    "env_variables": {}
+  },
+  "execution": {
+    "main": "index.js"
+  }
+}

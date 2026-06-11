@@ -1,0 +1,10 @@
+{
+  "name": "node_function",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "guruvayurappan.m@zohocorp.com",
+  "dependencies": {
+		"playwright-core": "latest",
+		"zcatalyst-sdk-node": "latest"
+	}
+}

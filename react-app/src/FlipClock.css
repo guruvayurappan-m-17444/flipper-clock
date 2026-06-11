@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+/* ─── Layout ─────────────────────────────────────────────── */
+
+.clock-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.clock-date {
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  font-size: 18px;
+  letter-spacing: 4px;
+  color: #555;
+  text-transform: uppercase;
+}
+
+.clock-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.clock-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.clock-digits {
+  display: flex;
+  gap: 5px;
+}
+
+.clock-label {
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #444;
+  text-transform: uppercase;
+}
+
+/* ─── Separator ───────────────────────────────────────────── */
+
+.sep-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.sep-colon {
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  font-size: 64px;
+  line-height: 100px;
+  color: #333;
+  user-select: none;
+}
+
+.sep-spacer {
+  /* mirrors the label height so the colon aligns with the card area */
+  display: block;
+  height: 19px;
+}
+
+/* ─── Flip Digit Card ─────────────────────────────────────── */
+
+.flip-digit {
+  position: relative;
+  width: 72px;
+  height: 100px;
+  perspective: 600px;
+  display: inline-block;
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* ─── Static halves ───────────────────────────────────────── */
+
+.digit-half {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+}
+
+.digit-half.upper {
+  top: 0;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(180deg, #27272b 0%, #1e1e22 100%);
+  border-bottom: 1px solid #0a0a0a;
+}
+
+.digit-half.lower {
+  bottom: 0;
+  border-radius: 0 0 8px 8px;
+  background: linear-gradient(180deg, #191919 0%, #222226 100%);
+}
+
+/* ─── Digit text — positioned to cover full card height ──── */
+
+.digit-text {
+  position: absolute;
+  width: 100%;
+  height: 100px;   /* full card height */
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  font-size: 84px;
+  color: #efefef;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* lower variant: shift up so the bottom half of the digit is visible */
+.digit-text-lower {
+  top: -50px;
+}
+
+/* ─── Animated flaps ──────────────────────────────────────── */
+
+.digit-flap {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  z-index: 10;
+  backface-visibility: hidden;
+}
+
+.flap-top {
+  top: 0;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(180deg, #2e2e32 0%, #222226 100%);
+  border-bottom: 1px solid #0a0a0a;
+  transform-origin: center bottom;
+  animation: foldTop 0.3s ease-in forwards;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+}
+
+.flap-bottom {
+  bottom: 0;
+  border-radius: 0 0 8px 8px;
+  background: linear-gradient(180deg, #161619 0%, #252529 100%);
+  transform-origin: center top;
+  transform: rotateX(90deg);   /* hidden initially */
+  animation: foldBottom 0.3s 0.3s ease-out forwards;
+}
+
+@keyframes foldTop {
+  from { transform: rotateX(0deg); }
+  to   { transform: rotateX(90deg); }
+}
+
+@keyframes foldBottom {
+  from { transform: rotateX(90deg); }
+  to   { transform: rotateX(0deg); }
+}
+
+/* ─── AM/PM Badge ─────────────────────────────────────────── */
+
+.ampm-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.ampm-badge {
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  font-size: 22px;
+  letter-spacing: 3px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  line-height: 1;
+  user-select: none;
+}
+
+.ampm-am {
+  background: #1a3a2a;
+  color: #4caf82;
+  border: 1px solid #2d5c42;
+}
+
+.ampm-pm {
+  background: #2a1a33;
+  color: #b06ce0;
+  border: 1px solid #4a2a66;
+}
+
+/* ─── Format Toggle Button ────────────────────────────────── */
+
+.format-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #1a1a1e;
+  border: 1px solid #333;
+  border-radius: 24px;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: #555;
+  transition: border-color 0.2s;
+}
+
+.format-toggle:hover {
+  border-color: #555;
+}
+
+.toggle-active {
+  color: #efefef;
+}
+
+.toggle-divider {
+  color: #333;
+}
