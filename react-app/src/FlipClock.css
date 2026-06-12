@@ -214,6 +214,31 @@
   transition: border-color 0.2s;
 }
 
+.clock-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.action-btn {
+  background: #1a1a1e;
+  border: 1px solid #333;
+  border-radius: 24px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #cfcfcf;
+  transition: border-color 0.2s;
+}
+
+.action-btn:hover {
+  border-color: #777;
+}
+
 .format-toggle:hover {
   border-color: #555;
 }
@@ -224,4 +249,32 @@
 
 .toggle-divider {
   color: #333;
+}
+
+@media (max-width: 720px) {
+  .clock-wrapper {
+    gap: 16px;
+  }
+
+  .clock-row {
+    transform: scale(0.8);
+    transform-origin: top center;
+  }
+
+  .clock-date {
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-align: center;
+  }
+
+  .clock-controls {
+    gap: 8px;
+  }
+
+  .action-btn,
+  .format-toggle {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    padding: 7px 12px;
+  }
 }

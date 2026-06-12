@@ -1,6 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "FlipClock",
+  "name": "Flipper Clock",
+  "description": "A flip clock with full-screen support.",
+  "id": "./",
+  "scope": ".",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +23,9 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "display_override": ["window-controls-overlay", "standalone", "fullscreen", "minimal-ui"],
+  "orientation": "landscape",
+  "theme_color": "#0d0d0d",
+  "background_color": "#0d0d0d",
+  "categories": ["utilities", "productivity"]
 }

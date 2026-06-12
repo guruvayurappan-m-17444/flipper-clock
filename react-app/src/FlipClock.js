@@ -21,10 +21,23 @@ function Separator() {
 export default function FlipClock() {
   const [now, setNow]     = useState(new Date());
   const [is24h, setIs24h] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(Boolean(document.fullscreenElement));
 
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(Boolean(document.fullscreenElement));
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
   }, []);
 
   const rawHour = now.getHours();
@@ -36,6 +49,18 @@ export default function FlipClock() {
   const ss = pad(now.getSeconds());
 
   const dateStr = `${DAY_NAMES[now.getDay()]}, ${MONTH_NAMES[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+
+  const toggleFullscreen = async () => {
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      } else {
+        await document.documentElement.requestFullscreen();
+      }
+    } catch (error) {
+      console.error('Fullscreen mode failed:', error);
+    }
+  };
 
   return (
     <div className="clock-wrapper">
@@ -78,15 +103,25 @@ export default function FlipClock() {
         )}
       </div>
 
-      <button
-        className="format-toggle"
-        onClick={() => setIs24h(v => !v)}
-        aria-label="Toggle time format"
-      >
-        <span className={!is24h ? 'toggle-active' : ''}>12H</span>
-        <span className="toggle-divider">|</span>
-        <span className={is24h ? 'toggle-active' : ''}>24H</span>
-      </button>
+      <div className="clock-controls">
+        <button
+          className="action-btn"
+          onClick={toggleFullscreen}
+          aria-label="Toggle full screen"
+        >
+          {isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
+        </button>
+
+        <button
+          className="format-toggle"
+          onClick={() => setIs24h(v => !v)}
+          aria-label="Toggle time format"
+        >
+          <span className={!is24h ? 'toggle-active' : ''}>12H</span>
+          <span className="toggle-divider">|</span>
+          <span className={is24h ? 'toggle-active' : ''}>24H</span>
+        </button>
+      </div>
     </div>
   );
 }
