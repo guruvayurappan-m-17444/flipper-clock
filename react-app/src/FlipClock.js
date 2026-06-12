@@ -114,31 +114,57 @@ export default function FlipClock() {
           )}
         </div>
       ) : (
-        <div className="analog-clock" role="img" aria-label="Analog clock with smooth moving hands">
-          <div className="analog-marks" aria-hidden="true">
-            {Array.from({ length: 12 }).map((_, index) => (
-              <div
-                key={`tick-${index}`}
-                className={`analog-mark ${index % 3 === 0 ? 'major-mark' : 'minor-mark'}`}
-                style={{ transform: `rotate(${index * 30}deg)` }}
-              />
-            ))}
+        <div className="analog-watch-scene">
+          <div className="watch-strap strap-left" aria-hidden="true">
+            <div className="strap-highlight" />
+            <div className="strap-hole-row">
+              {Array.from({ length: 9 }).map((_, i) => (
+                <span key={`left-hole-${i}`} className="strap-hole" />
+              ))}
+            </div>
           </div>
 
-          <div
-            className="analog-hand hour-hand"
-            style={{ transform: `rotate(${hourHandDegrees}deg)` }}
-          />
-          <div
-            className="analog-hand minute-hand"
-            style={{ transform: `rotate(${minuteHandDegrees}deg)` }}
-          />
-          <div
-            className="analog-hand second-hand"
-            style={{ transform: `rotate(${secondHandDegrees}deg)` }}
-          />
+          <div className="analog-clock-shell">
+            <span className="watch-lug lug-left" aria-hidden="true" />
+            <span className="watch-lug lug-right" aria-hidden="true" />
 
-          <div className="analog-center-dot" />
+            <div className="analog-clock" role="img" aria-label="Analog clock with smooth moving hands">
+              <div className="analog-marks" aria-hidden="true">
+                {Array.from({ length: 12 }).map((_, index) => (
+                  <div
+                    key={`tick-${index}`}
+                    className={`analog-mark ${index % 3 === 0 ? 'major-mark' : 'minor-mark'}`}
+                    style={{ transform: `rotate(${index * 30}deg)` }}
+                  />
+                ))}
+              </div>
+
+              <div
+                className="analog-hand hour-hand"
+                style={{ transform: `rotate(${hourHandDegrees}deg)` }}
+              />
+              <div
+                className="analog-hand minute-hand"
+                style={{ transform: `rotate(${minuteHandDegrees}deg)` }}
+              />
+              <div
+                className="analog-hand second-hand"
+                style={{ transform: `rotate(${secondHandDegrees}deg)` }}
+              />
+
+              <div className="analog-center-dot" />
+            </div>
+          </div>
+
+          <div className="watch-strap strap-right" aria-hidden="true">
+            <div className="strap-highlight" />
+            <div className="strap-hole-row">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <span key={`right-hole-${i}`} className="strap-hole" />
+              ))}
+            </div>
+            <span className="strap-pin" />
+          </div>
         </div>
       )}
 
