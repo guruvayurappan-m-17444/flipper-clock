@@ -129,6 +129,13 @@
   border-radius: 10px;
   background: linear-gradient(180deg, #b6bcc7 0%, #7f8794 100%);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.strap-pin:hover {
+  background: linear-gradient(180deg, #ffd66a 0%, #ff8a4c 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.38), 0 0 14px rgba(255, 176, 94, 0.55);
+  transform: scale(1.05);
 }
 
 .analog-clock {
@@ -466,8 +473,8 @@
   }
 
   .watch-strap {
-    height: 72px;
     min-width: 42px;
+    height: 72px;
     border-radius: 38px;
   }
 
